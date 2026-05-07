@@ -63,24 +63,33 @@ export async function POST(req) {
     const servicesLine = services.length ? services.join(", ") : "(none selected)";
     const otherLine = serviceOther || "(none)";
 
-    await transporter.sendMail({
-      from: `"Wrapify Website" <${process.env.SMTP_FROM || process.env.SMTP_USER}>`,
-      to: RECEIVER_EMAIL,
-      replyTo: email,
-      subject: `New Website Contact: ${name}`,
-      text: `New contact form submission\n\nName: ${name}\nEmail: ${email}\nServices: ${servicesLine}\nOther detail: ${otherLine}\n\nMessage:\n${message}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${escHtml(name)}</p>
-        <p><strong>Email:</strong> ${escHtml(email)}</p>
-        <p><strong>Services:</strong> ${escHtml(servicesLine)}</p>
-        <p><strong>Other detail:</strong> ${escHtml(otherLine)}</p>
-        <p><strong>Message:</strong></p>
-        <p>${escHtml(message).replace(/\n/g, "<br/>")}</p>
-      `
-    });
+    try {
+      await transporter.sendMail({
+        from: `"Wrapify Website" <${process.env.SMTP_FROM || process.env.SMTP_USER}>`,
+        to: RECEIVER_EMAIL,
+        replyTo: email,
+        subject: `New Website Contact: ${name}`,
+        text: `New contact form submission\n\nName: ${name}\nEmail: ${email}\nServices: ${servicesLine}\nOther detail: ${otherLine}\n\nMessage:\n${message}`,
+        html: `
+          <h2>New Contact Form Submission</h2>
+          <p><strong>Name:</strong> ${escHtml(name)}</p>
+          <p><strong>Email:</strong> ${escHtml(email)}</p>
+          <p><strong>Services:</strong> ${escHtml(servicesLine)}</p>
+          <p><strong>Other detail:</strong> ${escHtml(otherLine)}</p>
+          <p><strong>Message:</strong></p>
+          <p>${escHtml(message).replace(/\n/g, "<br/>")}</p>
+        `
+      });
 
-    return NextResponse.json({ success: true });
+      return NextResponse.json({ success: true, emailSent: true });
+    } catch (mailError) {
+      console.error("Contact API sendMail error:", mailError);
+      return NextResponse.json({
+        success: true,
+        emailSent: false,
+        warning: "Your request was saved. Email notification is temporarily unavailable."
+      });
+    }
   } catch (error) {
     console.error("Contact API sendMail error:", error);
 

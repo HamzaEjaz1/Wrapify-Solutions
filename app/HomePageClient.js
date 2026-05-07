@@ -228,8 +228,10 @@ export default function HomePageClient({
       setContactForm({ name: "", email: "", message: "", services: [], serviceOther: "" });
       setContactNotice({
         open: true,
-        type: "success",
-        text: "Message sent successfully. We will contact you soon."
+        type: data?.emailSent === false ? "error" : "success",
+        text:
+          data?.warning ||
+          "Message sent successfully. We will contact you soon."
       });
       setTimeout(() => {
         setContactNotice((prev) => ({ ...prev, open: false }));

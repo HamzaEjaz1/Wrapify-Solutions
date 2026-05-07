@@ -9,16 +9,21 @@ export async function GET(_req, { params }) {
 }
 
 export async function POST(req, { params }) {
-  const body = await req.json();
-  if (!body?.text) {
-    return NextResponse.json({ error: "Comment text is required" }, { status: 400 });
-  }
+  try {
+    const body = await req.json();
+    if (!body?.text) {
+      return NextResponse.json({ error: "Comment text is required" }, { status: 400 });
+    }
 
-  const { id } = await params;
-  const comment = await addBlogComment(id, body);
-  if (!comment) {
-    return NextResponse.json({ error: "Blog not found or invalid comment" }, { status: 404 });
-  }
+    const { id } = await params;
+    const comment = await addBlogComment(id, body);
+    if (!comment) {
+      return NextResponse.json({ error: "Blog not found or invalid comment" }, { status: 404 });
+    }
 
-  return NextResponse.json({ comment }, { status: 201 });
+    return NextResponse.json({ comment }, { status: 201 });
+  } catch (error) {
+    console.error("Blog comment POST error:", error);
+    return NextResponse.json({ error: "Failed to post comment. Please try again." }, { status: 500 });
+  }
 }

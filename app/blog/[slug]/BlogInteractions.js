@@ -42,7 +42,13 @@ export default function BlogInteractions({ blogId, initialComments = [] }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, rating, text })
       });
-      const data = await res.json();
+      const raw = await res.text();
+      let data = {};
+      try {
+        data = raw ? JSON.parse(raw) : {};
+      } catch {
+        data = { error: raw || "Could not post comment" };
+      }
       if (!res.ok) throw new Error(data.error || "Could not post comment");
 
       setComments((prev) => [data.comment, ...prev]);

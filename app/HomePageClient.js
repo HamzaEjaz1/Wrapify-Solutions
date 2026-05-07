@@ -216,7 +216,13 @@ export default function HomePageClient({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(contactForm)
       });
-      const data = await res.json();
+      const raw = await res.text();
+      let data = {};
+      try {
+        data = raw ? JSON.parse(raw) : {};
+      } catch {
+        data = { error: raw || "Could not submit message." };
+      }
       if (!res.ok) throw new Error(data.error || "Could not submit message.");
 
       setContactForm({ name: "", email: "", message: "", services: [], serviceOther: "" });

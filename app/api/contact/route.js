@@ -81,7 +81,18 @@ export async function POST(req) {
     });
 
     return NextResponse.json({ success: true });
-  } catch {
-    return NextResponse.json({ error: "Failed to send message. Please try again." }, { status: 500 });
+  } catch (error) {
+    console.error("Contact API sendMail error:", error);
+
+    const code = String(error?.code || "");
+    let message = "Failed to send message. Please try again.";
+
+    if (code === "EAUTH") {
+      message = "Email authentication failed. Recheck SMTP_USER and SMTP_PASS on the server.";
+    } else if (code === "ECONNECTION" || code === "ETIMEDOUT") {
+      message = "Email server connection failed. Recheck SMTP_HOST, SMTP_PORT, and server network access.";
+    }
+
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

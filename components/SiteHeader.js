@@ -16,6 +16,10 @@ const navItems = [
   { href: "/#contact", label: "Contact" }
 ];
 
+const uniqueNavItems = navItems.filter(
+  (item, index, arr) => arr.findIndex((x) => x.href === item.href && x.label === item.label) === index
+);
+
 export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
@@ -65,7 +69,7 @@ export default function SiteHeader() {
           <span />
         </button>
         <nav className={`main-nav ${menuOpen ? "open" : ""}`} aria-label="Primary">
-          {navItems.map((item) => (
+          {uniqueNavItems.map((item) => (
             <Link key={item.href} href={item.href} onClick={closeMenu}>
               {item.label}
             </Link>

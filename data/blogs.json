@@ -1,0 +1,62 @@
+[
+  {
+    "id": "b1",
+    "title": "Web Development Best Practices 2025",
+    "slug": "web-development-best-practices-2025",
+    "excerpt": "High-performance websites for USA markets.",
+    "content": "Discover modern performance, accessibility, and SEO patterns for scalable web experiences in competitive markets.",
+    "category": "Web Development",
+    "imageUrl": "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "publishedAt": "2025-01-04",
+    "comments": [
+      {
+        "id": "c101",
+        "name": "Adeel",
+        "text": "Very useful checklist for performance and SEO. We applied the image optimization tips immediately.",
+        "rating": 5,
+        "createdAt": "2025-01-06T11:00:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": "b2",
+    "title": "Mobile App Guide for Qatar & MENA",
+    "slug": "mobile-app-guide-for-qatar-and-mena",
+    "excerpt": "iOS and Android launch strategy by region.",
+    "content": "A practical framework for launching mobile products in MENA with localization, performance, and growth planning.",
+    "category": "App Development",
+    "imageUrl": "https://images.pexels.com/photos/607812/pexels-photo-607812.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "publishedAt": "2025-01-03",
+    "comments": [
+      {
+        "id": "ee4e1c21-a7da-4bdf-a712-f9abc8260e1c",
+        "name": "Hamza",
+        "text": "Great",
+        "rating": 5,
+        "createdAt": "2026-05-07T04:54:47.577Z"
+      }
+    ]
+  },
+  {
+    "id": "b3",
+    "title": "AI Automation Playbook for Service Businesses",
+    "slug": "ai-automation-playbook-service-businesses",
+    "excerpt": "Automate repetitive operations with practical AI workflows.",
+    "content": "Learn where AI automation creates immediate ROI for growing service companies. This guide covers lead qualification, support routing, reporting automation, and phased rollout strategies to reduce risk while improving efficiency.",
+    "category": "AI Automation",
+    "imageUrl": "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "publishedAt": "2025-01-02",
+    "comments": []
+  },
+  {
+    "id": "b4",
+    "title": "UI/UX Conversion Patterns That Increase Leads",
+    "slug": "ui-ux-conversion-patterns-increase-leads",
+    "excerpt": "Design patterns that improve trust and conversion rates.",
+    "content": "High-converting interfaces combine clear hierarchy, trust signals, and low-friction forms. In this article, we break down practical UI/UX techniques for B2B websites and explain how to validate each change with measurable experiments.",
+    "category": "UI/UX Design",
+    "imageUrl": "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    "publishedAt": "2025-01-01",
+    "comments": []
+  }
+]

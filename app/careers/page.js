@@ -17,6 +17,20 @@ function daysUntil(value) {
   return Math.round((d.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
 }
 
+function getJobImage(title) {
+  const t = String(title || "").toLowerCase();
+  if (t.includes("flutter") || t.includes("mobile")) {
+    return "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1400&q=80";
+  }
+  if (t.includes("full-stack") || t.includes("react") || t.includes("node")) {
+    return "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1400&q=80";
+  }
+  if (t.includes("ai") || t.includes("llm")) {
+    return "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1400&q=80";
+  }
+  return "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80";
+}
+
 export default async function CareersPage() {
   const jobs = await getAllJobs();
   const withMeta = jobs.map((job) => ({
@@ -28,17 +42,29 @@ export default async function CareersPage() {
     <main className="section careers-page">
       <div className="container careers-shell">
         <p className="eyebrow">Careers at Wrapify Solutions</p>
-        <h1>Join Our Remote Product &amp; AI Team</h1>
-        <p className="section-intro">
-          We work with product-led companies across the USA and MENA region, including Dubai and Qatar, to ship web,
-          mobile, and AI solutions that actually move the needle. If you care about ownership, craft, and real impact,
-          we would love to hear from you.
-        </p>
-        <p className="portfolio-note">
-          Send your resume and a short note about why you&apos;re a fit to{" "}
-          <a href="mailto:wrapifysolutions@gmail.com">wrapifysolutions@gmail.com</a>. If a role lists a Google Form,
-          please complete that as well.
-        </p>
+        <section className="careers-hero card">
+          <div className="careers-hero__content">
+            <h1>Join Our Remote Product &amp; AI Team</h1>
+            <p className="section-intro">
+              We work with product-led companies across the USA and MENA region, including Dubai and Qatar, to ship
+              web, mobile, and AI solutions that actually move the needle. If you care about ownership, craft, and
+              real impact, we would love to hear from you.
+            </p>
+            <p className="portfolio-note">
+              Send your resume and a short note about why you&apos;re a fit to{" "}
+              <a href="mailto:wrapifysolutions@gmail.com">wrapifysolutions@gmail.com</a>. If a role lists a Google
+              Form, please complete that as well.
+            </p>
+          </div>
+          <div className="careers-hero__visual" aria-hidden="true">
+            <img
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1500&q=80"
+              alt=""
+            />
+            <span className="careers-hero__badge">Global Remote Team</span>
+            <span className="careers-hero__badge careers-hero__badge--alt">AI + Product + Engineering</span>
+          </div>
+        </section>
         <section className="careers-highlights">
           <article className="card careers-highlight-card">
             <strong>{withMeta.length}</strong>
@@ -67,6 +93,9 @@ export default async function CareersPage() {
           <div className="card-grid two careers-grid" style={{ marginTop: "18px" }}>
             {withMeta.map((job) => (
               <article key={job.id} className="card careers-job-card">
+                <div className="careers-job-media">
+                  <img src={getJobImage(job.title)} alt={job.title} />
+                </div>
                 <div className="careers-job-head">
                   <p className="portfolio-tag">Open Role</p>
                   {job.daysLeft != null ? (

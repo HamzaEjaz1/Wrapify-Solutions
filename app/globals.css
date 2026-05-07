@@ -4259,6 +4259,57 @@ main {
   gap: 14px;
 }
 
+.careers-hero {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.careers-hero__content h1 {
+  margin: 0 0 8px;
+}
+
+.careers-hero__visual {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  min-height: 250px;
+  border: 1px solid color-mix(in srgb, var(--primary) 25%, var(--border));
+}
+
+.careers-hero__visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.03);
+  animation: careersZoom 8s ease-in-out infinite alternate;
+}
+
+.careers-hero__badge {
+  position: absolute;
+  left: 12px;
+  bottom: 14px;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #e8f0ff;
+  background: rgba(7, 21, 44, 0.76);
+  border: 1px solid rgba(154, 184, 239, 0.42);
+  animation: careersPulse 3s ease-in-out infinite;
+}
+
+.careers-hero__badge--alt {
+  left: auto;
+  right: 12px;
+  bottom: 54px;
+  background: rgba(33, 30, 87, 0.72);
+}
+
 .careers-highlights {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -4303,6 +4354,26 @@ main {
   gap: 8px;
 }
 
+.careers-job-media {
+  margin: -20px -20px 12px;
+  border-radius: 16px 16px 10px 10px;
+  overflow: hidden;
+  height: 170px;
+  border-bottom: 1px solid color-mix(in srgb, var(--primary) 24%, var(--border));
+}
+
+.careers-job-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.careers-job-card:hover .careers-job-media img {
+  transform: scale(1.06);
+}
+
 .careers-deadline {
   font-size: 0.75rem;
   font-weight: 700;
@@ -4318,6 +4389,24 @@ main {
   color: #9f1d1d;
   background: rgba(248, 113, 113, 0.16);
   border-color: rgba(248, 113, 113, 0.38);
+}
+
+@keyframes careersZoom {
+  0% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1.09);
+  }
+}
+
+@keyframes careersPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(122, 156, 235, 0.08);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(122, 156, 235, 0.08);
+  }
 }
 
 /* Service detail pages */
@@ -4430,6 +4519,14 @@ main {
   .hero-illu-chip {
     left: 8px;
     bottom: 16px;
+  }
+
+  .careers-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .careers-hero__visual {
+    min-height: 210px;
   }
 }
 
